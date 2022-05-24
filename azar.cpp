@@ -40,6 +40,7 @@ public:
             return false;
         }
     }
+    
 };
 
 class CincoImpares : public EstrategiaJuego {

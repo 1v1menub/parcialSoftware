@@ -167,17 +167,18 @@ public:
         return instancia;
     }
 
-    void GenerarNumero(int seedmod) {
+    int GenerarNumero(int seedmod) {
         srand(time(0) + seedmod);
         int num = rand() % 100 + 1;
         for(int i = 0; i < numeros.size(); i++) {
             if(num == numeros[i]) {
-                GenerarNumero(seedmod + 100);
-                return;
+                num = GenerarNumero(seedmod + 100);
+                return num;
             }
         }
         numeros.push_back(num);
         NotificarJugadores(num);
+        return num;
     }
 
     void NotificarJugadores(int n) {
@@ -240,7 +241,8 @@ int main() {
     while(!j.ConseguirEstado()){
         int ctr = 0;
         cout << "El juego continua" << endl;
-        j.GenerarNumero(ctr);
+        int numero = j.GenerarNumero(ctr);
+        cout << numero << endl;
         ctr++;
     }
 }; 
